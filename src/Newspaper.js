@@ -1,4 +1,4 @@
-const Waterstones = require('./Waterstones')
+const Waterstones = require('./Waterstones').Waterstones
 
 class Newspaper extends Waterstones {
   isNotAvailable() {

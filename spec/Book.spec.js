@@ -1,9 +1,10 @@
 const Book = require('../src/Book.js')
+const Author = require('../src/Waterstones.js').Author
 
 describe("Book", () => {
   let book
   beforeEach(() => {
-    book = new Book('My Lovely Book')
+    book = new Book('My Lovely Book', new Author('Mirkan', '07123456789'))
   })
 
   describe('#constructor', () => {
@@ -37,6 +38,27 @@ describe("Book", () => {
 
     it ('raises an error if the book is not on loan', () => {
       expect(() => book.checkIn()).toThrowError('item is not currently on loan')
+    })
+  })
+
+  describe('#getAuthorDetails', () => {
+    it ('retrieves the Author detials', () => {
+      const expected = {author: 'Mirkan', publisherNumber: '07123456789'}
+
+      const result = book.getAuthorDetails()
+      expect(result).toEqual(expected)
+    })
+  })
+
+  describe('#setAuthor', () => {
+    it ('sets the Author detials', () => {
+      const authorName = 'Bob'
+      const publisherNumber = '079...'
+
+      const expected = { author: 'Bob', publisherNumber: '079...' }
+
+      book.setAuthor(authorName, publisherNumber)
+      expect(book.getAuthorDetails()).toEqual(expected)
     })
   })
 })

@@ -1,7 +1,29 @@
-const Waterstones = require('./Waterstones')
+const { Waterstones, Author } = require('./Waterstones')
 
 class Book extends Waterstones {
+  constructor(title, author) {
+    super(title),
+    this.author = author
+  }
 
+  setAuthor(name, telephoneNum) {
+    if (name !== null && 
+        telephoneNum !== null) {
+          this.author.setName(name)
+          this.author.setPublisherTelephoneNum(telephoneNum)
+    }
+    else {
+      throw new Error('sorry but at least on of your inputs were invalid')
+    }
+  }
+
+  getAuthorDetails() {
+    return this.author.getDetails()
+  }
 }
+
+const book = new Book('foo', new Author('abc', '07'))
+
+console.log(book)
 
 module.exports = Book
