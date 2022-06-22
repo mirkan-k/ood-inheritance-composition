@@ -1,19 +1,16 @@
-class Newspaper {
-  constructor(title) {
-    this.title = title
-    this.onLoan = false
-  }
+const Waterstones = require('./Waterstones')
 
-  isOnLoan() {
-    return this.onLoan
+class Newspaper extends Waterstones {
+  isNotAvailable() {
+    throw new Error('newspapers are not available for loan')
   }
 
   checkIn() {
-    throw new Error('newspapers are not available for loan')
+    throw this.isNotAvailable()
   }
 
   checkOut() {
-    throw new Error('newspapers are not available for loan')
+    throw this.isNotAvailable()
   }
 }
 
